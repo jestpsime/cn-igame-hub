@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>pg电子 · 沉浸式游戏信息卡</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #faf7f2;
+            font-family: 'Georgia', 'Times New Roman', 'Noto Serif SC', serif;
+            color: #2e2b27;
+            line-height: 1.6;
+            padding: 2rem 1.2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .hero-card {
+            background: #ffffff;
+            border-radius: 2rem;
+            padding: 2.8rem 2.2rem;
+            margin-bottom: 3rem;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.02), 0 2px 6px rgba(0,0,0,0.04);
+            border: 1px solid #ece6dd;
+            transition: box-shadow 0.2s ease;
+        }
+
+        .hero-card:hover {
+            box-shadow: 0 12px 32px rgba(0,0,0,0.04), 0 4px 10px rgba(0,0,0,0.06);
+        }
+
+        h1 {
+            font-size: 2.2rem;
+            font-weight: 400;
+            letter-spacing: 1px;
+            color: #3c352e;
+            margin-bottom: 0.5rem;
+            border-left: 6px solid #c8b29a;
+            padding-left: 1rem;
+        }
+
+        .subhead {
+            font-size: 1rem;
+            color: #7a7066;
+            margin-bottom: 1.8rem;
+            font-style: italic;
+            border-bottom: 1px dashed #ddd6cc;
+            padding-bottom: 0.8rem;
+        }
+
+        .intro-text {
+            font-size: 1.05rem;
+            max-width: 720px;
+            margin-bottom: 1.2rem;
+        }
+
+        .highlight-link {
+            color: #8b6f54;
+            text-decoration: none;
+            border-bottom: 2px solid #dccfc0;
+            font-weight: 500;
+            transition: border-color 0.15s, color 0.15s;
+        }
+
+        .highlight-link:hover {
+            color: #5c4839;
+            border-bottom-color: #b0987c;
+        }
+
+        .grid-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.8rem;
+            margin: 2.8rem 0 2.2rem;
+        }
+
+        .info-card {
+            background: #ffffff;
+            border-radius: 1.5rem;
+            padding: 1.8rem 1.6rem;
+            border: 1px solid #eae3da;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .info-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 28px rgba(0,0,0,0.04);
+        }
+
+        .info-card h3 {
+            font-size: 1.3rem;
+            font-weight: 400;
+            color: #4b4037;
+            margin-bottom: 0.9rem;
+            border-bottom: 1px dotted #ddd2c4;
+            padding-bottom: 0.4rem;
+            letter-spacing: 0.3px;
+        }
+
+        .info-card p {
+            color: #4d453e;
+            font-size: 0.98rem;
+            margin-bottom: 0.6rem;
+        }
+
+        .quote-block {
+            background: #f3efe9;
+            border-left: 6px solid #c4b19c;
+            padding: 1.2rem 1.8rem;
+            margin: 2rem 0 1.8rem;
+            border-radius: 0 1.2rem 1.2rem 0;
+            font-style: normal;
+            color: #3f3831;
+        }
+
+        .quote-block p {
+            margin-bottom: 0.3rem;
+        }
+
+        .faq-mini {
+            background: #ffffff;
+            border-radius: 1.8rem;
+            padding: 1.6rem 2rem;
+            border: 1px solid #e7ddd2;
+            margin: 2.4rem 0 1.2rem;
+        }
+
+        .faq-mini details {
+            margin-bottom: 0.8rem;
+            border-bottom: 1px solid #efe8e0;
+            padding-bottom: 0.6rem;
+        }
+
+        .faq-mini details:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .faq-mini summary {
+            cursor: pointer;
+            font-weight: 500;
+            color: #4d4036;
+            padding: 0.3rem 0;
+            font-size: 1rem;
+            list-style: none;
+        }
+
+        .faq-mini summary::-webkit-details-marker {
+            display: none;
+        }
+
+        .faq-mini summary::before {
+            content: "▸ ";
+            color: #b0987c;
+        }
+
+        .faq-mini details[open] summary::before {
+            content: "▾ ";
+        }
+
+        .faq-mini p {
+            margin-top: 0.5rem;
+            padding-left: 1.2rem;
+            color: #5f554b;
+            font-size: 0.95rem;
+        }
+
+        .footer-note {
+            margin-top: 3rem;
+            padding-top: 1.2rem;
+            border-top: 1px solid #e2d9cf;
+            text-align: center;
+            font-size: 0.85rem;
+            color: #8a7f74;
+        }
+
+        .btn-soft {
+            display: inline-block;
+            background: transparent;
+            border: 1px solid #cfc1b2;
+            padding: 0.3rem 1rem;
+            border-radius: 2rem;
+            color: #5e5247;
+            text-decoration: none;
+            font-size: 0.85rem;
+            transition: background 0.2s, border-color 0.2s;
+        }
+
+        .btn-soft:hover {
+            background: #e5dbd0;
+            border-color: #b0987c;
+        }
+
+        @media (max-width: 600px) {
+            body {
+                padding: 1rem 0.8rem;
+            }
+            .hero-card {
+                padding: 1.8rem 1.2rem;
+            }
+            h1 {
+                font-size: 1.7rem;
+                padding-left: 0.6rem;
+            }
+            .grid-cards {
+                gap: 1.2rem;
+            }
+            .quote-block {
+                padding: 0.8rem 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="hero-card">
+    <h1>「pg电子」· 游戏叙事的信息边角</h1>
+    <div class="subhead">一组卡片，温和地整理一些关于电子场景的观察</div>
+    <p class="intro-text">
+        电子游戏的世界里，总有一些瞬间让人沉浸——不是胜负，而是氛围、节奏与细节的堆叠。  
+        对许多人来说，<a href="https://portal-index-pgsoft.com" class="highlight-link">pg电子</a>代表了一种把精致视觉和轻量交互融合的尝试：它不强调沉重的规则，而是用画面和反馈构建出一个个可随时进入的小世界。
+    </p>
+    <p style="color:#675c52; margin-top:0.2rem;">
+        下面这几张信息卡，从不同侧面聊聊这类电子体验的日常切片。
+    </p>
+</div>
+
+<div class="grid-cards">
+    <div class="info-card">
+        <h3>🎴 主视觉 · 风格即语言</h3>
+        <p>色彩明快、角色圆润、场景带着一丝幻想气息——这是多数人对它的第一印象。界面很少堆砌文字，常用图标与动态元素引导注意。这种克制反而让玩家更容易聚焦在“玩”本身，而不是阅读说明。</p>
+        <p style="font-size:0.9rem; color:#796c60; margin-top:0.8rem;">—— 视觉不是装饰，是交互的第一层翻译。</p>
+    </div>
+    <div class="info-card">
+        <h3>📦 用途卡片 · 轻量沉浸</h3>
+        <p>适合碎片时间，也适合想短暂抽离现实的人。不需要漫长加载，不必记住复杂背景故事，打开就能进入一个画面精致的场景。有人用它放松，有人单纯喜欢收集那些动画反馈和音效彩蛋。</p>
+        <p style="font-size:0.9rem; color:#796c60; margin-top:0.8rem;">用途并不宏大，但足够日常。</p>
+    </div>
+    <div class="info-card">
+        <h3>👥 适合人群</h3>
+        <p>如果你喜欢视觉风格鲜明的电子内容、对规则复杂度要求不高、更在意氛围和即时反馈——那么这一类体验很可能适合你。它既不要求你成为高手，也不设置过高的门槛，只是安静地提供一个可以反复进入的场景。</p>
+        <p style="font-size:0.9rem; color:#796c60; margin-top:0.8rem;">也适合那些想和朋友轻松分享画面感的人。</p>
+    </div>
+</div>
+
+<div class="quote-block">
+    <p>“电子游戏最迷人的时刻，往往不是赢的那一瞬间，而是你忘记自己正在操作的时候。”</p>
+    <p style="margin-top:0.4rem; text-align:right; color:#7a6c5f;">—— 一位常玩 <a href="https://portal-index-pgsoft.com" class="highlight-link">pg电子</a> 的玩家</p>
+</div>
+
+<div class="faq-mini">
+    <h3 style="font-weight:400; color:#4b4037; margin-bottom:1rem; border-bottom:1px dashed #dccfc0; padding-bottom:0.4rem;">📌 几个常见疑问</h3>
+
+    <details>
+        <summary>这类电子内容需要很多时间投入吗？</summary>
+        <p>不一定。多数设计为可随时暂停、随时继续，单次体验可长可短。更适合作为日常间隙的调剂，而不是需要大块时间沉浸的类型。</p>
+    </details>
+    <details>
+        <summary>画面风格会不会太花哨？</summary>
+        <p>因人而异。整体偏向明亮、柔和，但色彩饱和度控制得比较平衡，大部分场景以暖色和中间色为主，不会过于刺眼。</p>
+    </details>
+    <details>
+        <summary>我能和朋友一起体验吗？</summary>
+        <p>部分内容支持社交元素或分享功能，但更多是个人向的体验。两个人坐在一起各自打开自己的节奏，也是一种陪伴方式。</p>
+    </details>
+</div>
+
+<div style="margin: 2rem 0 1.2rem; padding: 1rem 0; border-top: 1px solid #e7ddd2;">
+    <p style="font-size:0.95rem; color:#5f554b;">
+        🧩 延伸 · 如果你对这类视觉驱动的电子内容感兴趣，可以多留意那些注重细节反馈的作品。它们往往在音效、动效和界面过渡上花了很多心思，而不仅仅是堆叠功能。 
+        一个自然的起点就是去了解 <a href="https://portal-index-pgsoft.com" class="highlight-link">pg电子</a> 所代表的风格方向——不一定要深入，但值得一看。
+    </p>
+</div>
+
+<div class="footer-note">
+    <span>信息卡片 · 温和整理 ｜ 基于实际体验与观察 ｜ 非官方页面</span>
+    <span style="display:block; margin-top:0.3rem; font-size:0.75rem; color:#a99b8d;">——  B5 4ba 673a78a263 ——</span>
+</div>
+
+</body>
+</html>
